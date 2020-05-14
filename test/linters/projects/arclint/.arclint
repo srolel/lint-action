@@ -1,0 +1,13 @@
+{
+    "linters": {
+        "scalastyle": {
+            "type": "scalastyle",
+            "config": "scalastyle-config.xml",
+            "include": "(\\.scala$)"
+        },
+        "eslint": {
+            "type": "eslint",
+            "include": "(\\.js$)"
+        }
+    }
+}

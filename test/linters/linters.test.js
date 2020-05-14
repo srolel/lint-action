@@ -3,6 +3,7 @@ const { join } = require("path");
 const { copy } = require("fs-extra");
 
 const { normalizeDates, testProjectsDir, tmpDir } = require("../test-utils");
+const arclintParams = require("./params/arclint");
 const blackParams = require("./params/black");
 const eslintParams = require("./params/eslint");
 const eslintTypescriptParams = require("./params/eslint-typescript");
@@ -32,6 +33,7 @@ const linterParams = [
 	ruboCopParams,
 	stylelintParams,
 	xoParams,
+	arclintParams,
 ];
 if (process.platform === "linux") {
 	linterParams.push(swiftFormatOfficial);

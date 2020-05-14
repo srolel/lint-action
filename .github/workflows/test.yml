@@ -155,6 +155,18 @@ jobs:
           cd ../swiftlint/
           mint bootstrap --link
 
+      # Arcanist
+
+      - name: Install Arcanist dependencies
+        run: |
+          cd ./test/linters/projects/arclint/
+          git clone https://github.com/phacility/libphutil.git
+          git clone https://github.com/phacility/arcanist.git
+
+      - name: Add arc to path
+        run: |
+          echo "::add-path::./test/linters/projects/arclint/arcanist/bin"
+
       # Tests
 
       - name: Run tests

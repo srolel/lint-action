@@ -73,7 +73,7 @@ async function runAction() {
 			log(`Verified ${linter.name} setup`);
 
 			// Determine which files should be linted
-			const fileExtList = fileExtensions.split(",");
+			const fileExtList = fileExtensions ? fileExtensions.split(",") : [];
 			log(`Will use ${linter.name} to check the files with extensions ${fileExtList}`);
 
 			// Lint and optionally auto-fix the matching files, parse code style violations

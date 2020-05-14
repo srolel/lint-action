@@ -197,26 +197,6 @@ inputs:
     required: false
     default: ""
 
-  flake8:
-    description: Enable or disable Flake8 checks
-    required: false
-    default: false
-  flake8_args:
-    description: Additional arguments to pass to the linter
-    required: false
-    default: ""
-  flake8_dir:
-    description: Directory where the Flake8 command should be run
-    required: false
-  flake8_extensions:
-    description: Extensions of files to check with Flake8
-    required: false
-    default: "py"
-  flake8_command_prefix:
-    description: Shell command to prepend to the linter command
-    required: false
-    default: ""
-
   mypy:
     description: Enable or disable Mypy checks
     required: false
@@ -339,6 +319,46 @@ inputs:
     required: false
     default: "swift"
   swiftlint_command_prefix:
+    description: Shell command to prepend to the linter command
+    required: false
+    default: ""
+
+  flake8:
+    description: Enable or disable Flake8 checks
+    required: false
+    default: false
+  flake8_args:
+    description: Additional arguments to pass to the linter
+    required: false
+    default: ""
+  flake8_dir:
+    description: Directory where the Flake8 command should be run
+    required: false
+  flake8_extensions:
+    description: Extensions of files to check with Flake8
+    required: false
+    default: "py"
+  flake8_command_prefix:
+    description: Shell command to prepend to the linter command
+    required: false
+    default: ""
+
+  arclint:
+    description: Enable or disable Arclint checks
+    required: false
+    default: false
+  arclint_args:
+    description: Additional arguments to pass to the linter
+    required: false
+    default: ""
+  arclint_dir:
+    description: Directory where the arclint command should be run
+    required: false
+  arclint_extensions:
+    description: Extensions of files to check with Flake8
+    required: false
+    default: ""
+  arclint_command_prefix:
     description: Shell command to prepend to the linter command
     required: false
     default: ""
