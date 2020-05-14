@@ -1,3 +1,4 @@
+const Arclint = require("./arclint");
 const Black = require("./black");
 const ESLint = require("./eslint");
 const Flake8 = require("./flake8");
@@ -24,6 +25,7 @@ const linters = {
 	stylelint: Stylelint,
 	swiftlint: SwiftLint,
 	xo: XO,
+	arclint: Arclint,
 
 	// Formatters (should be run after linters)
 	black: Black,
