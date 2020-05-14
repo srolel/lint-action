@@ -21,26 +21,25 @@ const swiftlintParams = require("./params/swiftlint");
 const xoParams = require("./params/xo");
 
 const linterParams = [
-	blackParams,
-	eslintParams,
-	eslintTypescriptParams,
-	flake8Params,
-	gofmtParams,
-	golintParams,
-	mypyParams,
-	phpCodeSnifferParams,
-	prettierParams,
-	ruboCopParams,
-	stylelintParams,
-	xoParams,
+	// blackParams,
+	// eslintParams,
+	// eslintTypescriptParams,
+	// flake8Params,
+	// gofmtParams,
+	// golintParams,
+	// mypyParams,
+	// prettierParams,
+	// ruboCopParams,
+	// stylelintParams,
+	// xoParams,
 	arclintParams,
 ];
-if (process.platform === "linux") {
-	linterParams.push(swiftFormatOfficial);
-}
-if (process.platform === "darwin") {
-	linterParams.push(swiftFormatLockwood, swiftlintParams);
-}
+// if (process.platform === "linux") {
+// 	linterParams.push(swiftFormatOfficial);
+// }
+// if (process.platform === "darwin") {
+// 	linterParams.push(swiftFormatLockwood, swiftlintParams);
+// }
 
 // Copy linter test projects into temporary directory
 beforeAll(async () => {

@@ -25,135 +25,89 @@ jobs:
 
       # Go
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.13
+      # - name: Set up Go
+      #   uses: actions/setup-go@v1
+      #   with:
+      #     go-version: 1.13
 
-      - name: Install Go dependencies
-        run: |
-          cd ./test/linters/projects/golint
-          go get -u golang.org/x/lint/golint
+      # # TODO: Remove step once actions/setup-go adds $GOPATH/bin to $PATH by default
+      # # See https://github.com/actions/setup-go/issues/14
+      # - name: Add Go to $PATH
+      #   run: |
+      #     echo "::set-env name=GOPATH::$(go env GOPATH)"
+      #     echo "::add-path::$(go env GOPATH)/bin"
 
-      # Node.js
+      # - name: Install Go dependencies
+      #   run: |
+      #     cd ./test/linters/projects/golint
+      #     go get -u golang.org/x/lint/golint
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
+      # # Node.js
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 12
 
-      - name: Set up yarn cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('./test/linters/projects/**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      # - name: Install Node.js dependencies
+      #   run: |
+      #     cd ./test/linters/projects/eslint/
+      #     yarn install
+      #     cd ../eslint-typescript/
+      #     yarn install
+      #     cd ../prettier/
+      #     yarn install
+      #     cd ../stylelint/
+      #     yarn install
+      #     cd ../xo/
+      #     yarn install
 
-      - name: Install Node.js dependencies
-        run: |
-          cd ./test/linters/projects/eslint/
-          yarn install
-          cd ../eslint-typescript/
-          yarn install
-          cd ../prettier/
-          yarn install
-          cd ../stylelint/
-          yarn install
-          cd ../xo/
-          yarn install
+      # # Python
 
-      # PHP
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "7.4"
-          coverage: none
-          tools: phpcs
+      # - name: Set up Python
+      #   uses: actions/setup-python@v1
+      #   with:
+      #     python-version: 3.8
 
-      # Python
+      # - name: Install Python dependencies
+      #   run: |
+      #     cd ./test/linters/projects/
+      #     pip install -r ./black/requirements.txt -r ./flake8/requirements.txt -r ./mypy/requirements.txt
 
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
+      # # Ruby
 
-      - name: Get pip cache directory path
-        id: pip-cache
-        run: |
-          echo "::set-output name=dir::$(pip cache dir)"
+      # - name: Set up Ruby
+      #   uses: actions/setup-ruby@v1
+      #   with:
+      #     ruby-version: 2.6
 
-      - name: Set up pip cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('./test/linters/projects/**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: Install Python dependencies
-        run: |
-          cd ./test/linters/projects/
-          pip install -r ./black/requirements.txt -r ./flake8/requirements.txt -r ./mypy/requirements.txt
-
-      # Ruby
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-          bundler: 2
-
-      - name: Set up bundle cache
-        uses: actions/cache@v2
-        with:
-          path: ./test/linters/projects/**/vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('./test/linters/projects/**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install Ruby dependencies
-        run: |
-          cd ./test/linters/projects/rubocop/
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+      # - name: Install Ruby dependencies
+      #   run: |
+      #     gem install bundler
+      #     cd ./test/linters/projects/rubocop/
+      #     bundle install
 
       # Swift (only on Linux)
 
-      - name: Install Swift dependencies (Linux)
-        if: startsWith(matrix.os, 'ubuntu')
-        run: |
-          git clone --branch 0.50200.0 --depth 1 git://github.com/apple/swift-format
-          cd swift-format
-          swift build -c release
-          echo "::add-path::${PWD}/.build/release"
+      # - name: Install Swift dependencies (Linux)
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: |
+      #     git clone --branch 0.50200.0 --depth 1 git://github.com/apple/swift-format
+      #     cd swift-format
+      #     swift build -c release
+      #     echo "::add-path::${PWD}/.build/release"
 
-      # Swift (only on macOS)
+      # # Swift (only on macOS)
 
-      - name: Set up mint cache
-        if: startsWith(matrix.os, 'macos')
-        uses: actions/cache@v2
-        with:
-          path: /usr/local/lib/mint
-          key: ${{ runner.os }}-mint-${{ hashFiles('./test/linters/projects/**/Mintfile') }}
-          restore-keys: |
-            ${{ runner.os }}-mint-
-
-      - name: Install Swift dependencies (macOS)
-        if: startsWith(matrix.os, 'macos')
-        run: |
-          brew update >/dev/null
-          brew install mint
-          # If installed, unlink swiftlint, workaround for https://github.com/yonaskolb/Mint/issues/182
-          brew unlink swiftlint || true
-          cd ./test/linters/projects/swift-format-lockwood/
-          mint bootstrap --link
-          cd ../swiftlint/
-          mint bootstrap --link
+      # - name: Install Swift dependencies (macOS)
+      #   if: startsWith(matrix.os, 'macos')
+      #   run: |
+      #     brew update
+      #     brew install mint
+      #     cd ./test/linters/projects/swift-format-lockwood/
+      #     mint bootstrap --link
+      #     cd ../swiftlint/
+      #     mint bootstrap --link
 
       # Arcanist
 
