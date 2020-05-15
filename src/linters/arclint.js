@@ -81,8 +81,8 @@ class ArcLint {
 				const lineNr = parseInt(line, 10);
 				lintResult[this.getSeverity(severity)].push({
 					path,
-					firstLine: lineNr,
-					lastLine: lineNr,
+					firstLine: lineNr || 1,
+					lastLine: lineNr || 1,
 					message,
 				});
 			} catch (e) {
