@@ -2,7 +2,7 @@ const { run, log } = require("../utils/action");
 const commandExists = require("../utils/command-exists");
 const { initLintResult } = require("../utils/lint-result");
 
-const PARSE_REGEX = /^(.+):([0-9]+):(.+?) (.+)$/gm;
+const PARSE_REGEX = /^(.+?):([0-9]+):(.+?) (.+)$/gm;
 
 // Mapping of Arcanist lint severities to severities used for GitHub commit annotations
 const severityMap = {
