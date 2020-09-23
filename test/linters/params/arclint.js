@@ -46,8 +46,8 @@ See documentation at https://www.eslint.org/docs/rules/no-warning-comments`,
 			error: [
 				{
 					path: "src/Foo.scala",
-					firstLine: 0,
-					lastLine: 0,
+					firstLine: 1,
+					lastLine: 1,
 					message: "(scalastyle) File must end with newline",
 				},
 				{
@@ -69,4 +69,4 @@ See documentation at https://www.eslint.org/docs/rules/no-warning-comments`,
 
 const getFixParams = getLintParams; // Does not support auto-fixing -> option has no effect
 
-module.exports = [testName, linter, extensions, getLintParams, getFixParams, args];
+module.exports = [testName, linter, "", extensions, getLintParams, getFixParams, args];

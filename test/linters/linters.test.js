@@ -28,6 +28,7 @@ const linterParams = [
 	// gofmtParams,
 	// golintParams,
 	// mypyParams,
+	// phpCodeSnifferParams,
 	// prettierParams,
 	// ruboCopParams,
 	// stylelintParams,
@@ -50,7 +51,7 @@ beforeAll(async () => {
 // Test all linters
 describe.each(linterParams)(
 	"%s",
-	(projectName, linter, commandPrefix, extensions, getLintParams, getFixParams) => {
+	(projectName, linter, commandPrefix, extensions, getLintParams, getFixParams, args = "") => {
 		const projectTmpDir = join(tmpDir, projectName);
 
 		beforeAll(async () => {
@@ -66,7 +67,7 @@ describe.each(linterParams)(
 
 			// Test `lint` function
 			test(`${linter.name} returns expected ${lintMode} output`, () => {
-				const cmdOutput = linter.lint(projectTmpDir, extensions, "", autoFix, commandPrefix);
+				const cmdOutput = linter.lint(projectTmpDir, extensions, args, autoFix, commandPrefix);
 
 				// Exit code
 				expect(cmdOutput.status).toEqual(expected.cmdOutput.status);
