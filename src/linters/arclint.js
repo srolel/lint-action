@@ -55,7 +55,7 @@ class ArcLint {
 		// --output compiler: outputs messages in a convenient format
 		return run(`${prefix} arc lint ${fix ? "--amend-autofixes" : ""} --output compiler ${args}`, {
 			dir,
-			ignoreErrors: false,
+			ignoreErrors: true,
 		});
 	}
 
