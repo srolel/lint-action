@@ -53,7 +53,7 @@ class ArcLint {
 		}
 
 		// --output compiler: outputs messages in a convenient format
-		return run(`${prefix} arc lint ${fix ? "--amend-autofixes" : ""} --output compiler '${args.replace(/\$/g, '\\$')}'`, {
+		return run(`${prefix} arc lint ${fix ? "--amend-autofixes" : ""} --output compiler ${args.replace(/\$/g, '\\$')}`, {
 			dir,
 			ignoreErrors: true,
 		});
